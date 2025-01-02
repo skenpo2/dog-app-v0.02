@@ -1,15 +1,18 @@
-import { useAppContext } from './Context';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import HomeLayout from './components/HomeLayout';
+import SingleDog from './pages/SingleDog';
+import DogList from './pages/DogList';
 
-export const App = () => {
-  const { response } = useAppContext();
-  console.log(response);
-  console.log(typeof response);
-
+const App = () => {
   return (
-    <main>
-      <h1>hello</h1>
-    </main>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomeLayout />}>
+          <Route index element={<DogList />} />
+        </Route>
+        <Route path="/:id" element={<SingleDog />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
-
 export default App;
