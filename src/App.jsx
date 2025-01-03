@@ -1,18 +1,26 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Routes } from 'react-router-dom';
 import HomeLayout from './components/HomeLayout';
 import SingleDog from './pages/SingleDog';
 import DogList from './pages/DogList';
 
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <HomeLayout />,
+    children: [
+      {
+        index: true,
+        element: <DogList />,
+      },
+    ],
+  },
+  {
+    path: '/:id',
+    element: <SingleDog />,
+  },
+]);
+
 const App = () => {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomeLayout />}>
-          <Route index element={<DogList />} />
-        </Route>
-        <Route path="/:id" element={<SingleDog />} />
-      </Routes>
-    </BrowserRouter>
-  );
+  return <RouterProvider router={router} />;
 };
 export default App;
