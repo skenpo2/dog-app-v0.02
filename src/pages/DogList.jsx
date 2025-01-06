@@ -1,36 +1,45 @@
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 
+const url = `https://api.thedogapi.com/v1/images/search?limit=10&has_breeds=1&api_key=${
+  import.meta.env.VITE_API_KEY
+}`;
+
+export const dogListLoader = async () => {
+  const result = await axios.get(url);
+  return result;
+};
+
 const DogList = () => {
-  const url = `https://api.thedogapi.com/v1/images/search?limit=10&has_breeds=1&api_key=${
-    import.meta.env.VITE_API_KEY
-  }`;
+  const data = useLoaderData();
+  // const { data, isLoading, isError, error } = useQuery({
+  //   queryKey: ['dogs'],
+  //   queryFn: async () => {
+  //     const result = await axios.get(url);
+  //     return result.data;
+  //   },
 
-  const { data, isLoading, isError, error } = useQuery({
-    queryKey: ['dogs'],
-    queryFn: async () => {
-      const result = await axios.get(url);
-      return result.data;
-    },
+  //   staleTime: 1000 * 60 * 5, // Cache data for 5 minutes
+  //   refetchOnWindowFocus: false, // Prevent refetch when switching tabs
+  //   refetchOnReconnect: false, // Prevent refetch when reconnecting to the internet
+  //   refetchInterval: false,
+  // });
 
-    staleTime: 1000 * 60 * 5, // Cache data for 5 minutes
-    refetchOnWindowFocus: false, // Prevent refetch when switching tabs
-    refetchOnReconnect: false, // Prevent refetch when reconnecting to the internet
-    refetchInterval: false,
-  });
+  // if (isLoading) {
+  //   return <p>Loading ............</p>;
+  // }
 
-  if (isLoading) {
-    return <p>Loading ............</p>;
-  }
+  // if (isError) {
+  //   return <p>{error.message}</p>;
+  // }
 
-  if (isError) {
-    return <p>{error.message}</p>;
-  }
+  console.log(data.request);
 
   return (
     <section>
-      {data.map((dog) => (
+      <h1>hello word </h1>
+      {/* {data.map((dog) => (
         <Link
           to={`/${dog.id}`}
           key={dog.id}
@@ -45,7 +54,7 @@ const DogList = () => {
             />
           </article>
         </Link>
-      ))}
+      ))} */}
     </section>
   );
 };

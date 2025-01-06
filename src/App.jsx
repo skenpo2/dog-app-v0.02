@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider, Routes } from 'react-router-dom';
 import HomeLayout from './components/HomeLayout';
 import SingleDog from './pages/SingleDog';
 import DogList from './pages/DogList';
+import { dogListLoader } from './pages/DogList';
 
 const router = createBrowserRouter([
   {
@@ -11,6 +12,7 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <DogList />,
+        loader: dogListLoader,
       },
     ],
   },
