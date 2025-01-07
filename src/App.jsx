@@ -1,20 +1,19 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import HomeLayout from './components/HomeLayout';
+import SingleDog from './pages/SingleDog';
+import DogList from './pages/DogList';
+import { loader as dogListLoader } from './pages/DogList';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import HomeLayout from './components/HomeLayout';
-import DogList, { dogListLoader } from './pages/DogList';
-import SingleDog from './pages/SingleDog';
 
-// Create a Query Client instance
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 1000 * 60 * 5, // Cache data for 5 minutes
+      staleTime: 1000 * 60 * 5, // cache the request for 5 minute
     },
   },
 });
 
-// Define routes with React Router
 const router = createBrowserRouter([
   {
     path: '/',
@@ -23,7 +22,7 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <DogList />,
-        loader: dogListLoader, // Loader for DogList
+        loader: dogListLoader(queryClient),
       },
     ],
   },
@@ -41,6 +40,4 @@ const App = () => {
     </QueryClientProvider>
   );
 };
-
-export { queryClient }; // Export queryClient for use in loaders
 export default App;
