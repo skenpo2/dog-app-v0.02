@@ -35,24 +35,17 @@ const DogList = () => {
   return (
     <>
       <SearchForm />
-      <section>
-        <h1>hello word </h1>
-        {/* {data.map((dog) => (
-          <Link
-            to={`/${dog.id}`}
-            key={dog.id}
-            // state={{ dog }} // Passing the entire dog data object
-          >
-            <article>
-              <img
-                src={dog.url}
-                alt="dog picture"
-                width={'100px'}
-                height={'100px'}
-              />
-            </article>
-          </Link>
-        ))} */}
+      <section className="mx-auto  px-8 py-4  gap-2">
+        {data.map((dog) => (
+          <article key={dog.id}>
+            <img
+              src={dog.url}
+              alt="dog picture"
+              width={'100px'}
+              height={'100px'}
+            />
+          </article>
+        ))}
       </section>
     </>
   );
