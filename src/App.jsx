@@ -3,16 +3,10 @@ import HomeLayout from './components/HomeLayout';
 import SingleDog from './pages/SingleDog';
 import DogList from './pages/DogList';
 import { loader as dogListLoader } from './pages/DogList';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 1000 * 60 * 5, // cache the request for 5 minute
-    },
-  },
-});
+import { getDogList } from './feature/dogList/dogSlice';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 const router = createBrowserRouter([
   {
@@ -33,12 +27,16 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getDogList());
+  }, []);
+
   return (
     <main className="w-full bg-slate-300">
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-        <ReactQueryDevtools initialIsOpen={false} />
-      </QueryClientProvider>
+      <RouterProvider router={router} />
+      <ReactQueryDevtools initialIsOpen={false} />
     </main>
   );
 };
