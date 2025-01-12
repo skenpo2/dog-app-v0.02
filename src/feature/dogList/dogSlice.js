@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 // Define the API endpoint
-const url = `https://api.thedogapi.com/v1/images/search?limit=10&has_breeds=1&api_key=${
+const url = `https://api.thedogapi.com/v1/images/search?limit=12&has_breeds=1&api_key=${
   import.meta.env.VITE_API_KEY
 }`;
 
