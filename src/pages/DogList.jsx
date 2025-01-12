@@ -6,13 +6,13 @@ const DogList = () => {
   const { dogList: data } = useSelector((store) => store.dog);
   return (
     <>
-      <section className="mx-auto  px-6 gap-y-8 grid">
+      <section className="mx-auto  px-6 gap-y-8 grid lg:grid lg:grid-cols-3 lg:gap-x-4">
         {data.map((dog) => {
           const { bred_for, breed_group, height, name, temperament, weight } =
             dog.breeds[0];
           return (
             <article
-              className=" flex shadow-md h-36 justify-between items-center  gap-2 rounded-2xl w-full "
+              className=" flex shadow-md h-36 justify-between items-center  gap-2 rounded-2xl w-full lg:flex lg:flex-col lg:h-auto "
               key={dog.id}
             >
               <div className=" w-5/12 rounded-2xl h-full">
