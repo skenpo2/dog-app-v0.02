@@ -32,7 +32,7 @@ const App = () => {
   }, []);
 
   return (
-    <main className="w-full bg-slate-300">
+    <main>
       <RouterProvider router={router} />
     </main>
   );
