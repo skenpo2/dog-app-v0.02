@@ -6,39 +6,38 @@ const DogList = () => {
   const { dogList: data } = useSelector((store) => store.dog);
   return (
     <>
-      <section className="mx-auto  grid grid-cols-4 gap-4 px-8 py-4">
+      <section className="mx-auto  px-8 gap-y-8 grid">
         {data.map((dog) => {
           const { bred_for, breed_group, height, name, temperament, weight } =
             dog.breeds[0];
           return (
             <article
-              className="bg-slate-100 flex flex-col shadow-md items-center rounded-lg "
+              className=" flex shadow-md items-center rounded-lg w-full "
               key={dog.id}
             >
               <img
-                className="block w-full h-48 object-cover rounded-lg"
+                className="block w-full h-56 object-cover rounded-lg"
                 src={dog.url}
                 alt="dog picture"
-                width={'100px'}
-                height={'100px'}
               />
 
-              <div className=" flex flex-col gap-4 m-4 p-2">
+              <div className=" flex flex-col w-full m-4 p-4 gap-4">
                 <div className=" flex items-center justify-between w-full">
                   <h3 className="text-xl font-sans font-bold"> {name}</h3>
                   <span className="block">
-                    <FaRegHeart />
+                    <FaRegHeart className="text-red-500" />
                   </span>
                 </div>
                 <p className="text-sm font-semibold">
-                  {' '}
-                  <span className=" font-normal text-md">Bred for : </span>{' '}
+                  <span className=" font-semibold text-red-500 text-md">
+                    Bred for :{' '}
+                  </span>{' '}
                   {bred_for}{' '}
                 </p>
-                <p>{breed_group} </p>
+                {/* <p>{breed_group} </p>
                 <p> {height.metric} </p>
                 <p> {temperament}</p>
-                <p>{weight.metric} </p>
+                <p>{weight.metric} </p> */}
               </div>
             </article>
           );
