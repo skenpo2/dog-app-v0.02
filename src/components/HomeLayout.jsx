@@ -1,9 +1,10 @@
 import { Outlet } from 'react-router-dom';
+import SearchForm from './SearchForm';
 
 const HomeLayout = () => {
   return (
     <>
-      <div>HomeLayout is here</div>
+      <SearchForm />
       <Outlet />
     </>
   );
